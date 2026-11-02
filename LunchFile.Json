@@ -1,0 +1,20 @@
+{
+    "meals": [
+        {
+            "name": "Jerk Chicken with Rice and Peas",
+            "price": 1200
+        },
+        {
+            "name": "Steamed Fish with Vegetables",
+            "price": 1500
+        },
+        {
+            "name": "Curry Goat with White Rice",
+            "price": 1400
+        },
+        {
+            "name": "Vegetable Salad",
+            "price": 800
+        }
+    ]
+}

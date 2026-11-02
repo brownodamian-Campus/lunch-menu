@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Lunch Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f6f2;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            color: darkgreen;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #menu {
+            margin: 20px auto;
+            padding: 15px;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Welcome to Our Lunch Menu</h1>
+    <p>Click the button below to view today's available meals.</p>
+
+    <button onclick="loadMenu()">View Lunch Menu</button>
+
+    <div id="menu">
+        <p>Your lunch menu will appear here.</p>
+    </div>
+
+    <script>
+        function loadMenu() {
+            fetch("LunchFile.json")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Unable to load menu.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    let output = "<h2>Today's Lunch Specials</h2>";
+
+                    data.meals.forEach(meal => {
+                        output += "<p><strong>" + meal.name +
+                            "</strong> - $" + meal.price + "</p>";
+                    });
+
+                    document.getElementById("menu").innerHTML = output;
+                })
+                .catch(error => {
+                    document.getElementById("menu").innerHTML =
+                        "Sorry, the lunch menu could not be loaded.";
+                });
+        }
+    </script>
+
+</body>
+</html>
+
